@@ -33,7 +33,7 @@ for (let x in dataNoHeaders) {
 
 			let dataOutput = `*4\r\n$4\r\nZADD\r\n$${categoryLength}\r\n${category}\r\n$${modelValueLength}\r\n${modelValue}\r\n$${modelNameLength}\r\n${modelName}\r\n`
 
-			fs.appendFileSync('./new_bulk_data.csv', dataOutput, (err) => {
+			fs.appendFileSync('./data_as_protocol.txt', dataOutput, (err) => {
 				if (err) {
 					console.error(err);
 					return;

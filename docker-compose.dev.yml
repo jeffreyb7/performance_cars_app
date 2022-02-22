@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+        exhaust:
+                build:
+                        context: ./exhaust
+                ports:
+                        - 3000:3000
+                volumes:
+                        - ./exhaust:/exhaust
+                
+        redis-loader:
+                build:
+                        context: ./initial_data
+                depends_on:
+                        redisdb:
+                                condition:
+                                        service_healthy
+
+        redisdb:
+                image: redis
+                ports:
+                        - 6379:6379
+                volumes:
+                        - redis:/data/db
+                        - redis_config:/data/configdb
+                healthcheck:
+                        test: redis-cli ping || exit 1
+                        interval: 5s
+                        timeout: 3s
+
+volumes:
+        redis:
+        redis_config:

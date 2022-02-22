@@ -24,12 +24,12 @@ async function testTransactions() {
 
 	await client.connect();
 
-	await client.set('foo', 'bar', (err, reply) => {
+	/*await client.set('foo', 'bar', (err, reply) => {
 		if (err) throw err;
 		console.log('Setting' + reply);
-	});
+	});*/
 
-	const testData = await client.get('foo', (err, reply) => {
+	const testData = await client.ZRANGEBYSCORE('Hp', '0', '1000', 'WITHSCORES', (err, reply) => {
 		if (err) throw err;
 		console.log('Getting' + reply);
 
