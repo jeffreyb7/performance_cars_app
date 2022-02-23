@@ -12,10 +12,6 @@ services:
         redis-loader:
                 build:
                         context: ./initial_data
-                depends_on:
-                        redisdb:
-                                condition:
-                                        service_healthy
 
         redisdb:
                 image: redis
@@ -24,10 +20,6 @@ services:
                 volumes:
                         - redis:/data/db
                         - redis_config:/data/configdb
-                healthcheck:
-                        test: redis-cli ping || exit 1
-                        interval: 5s
-                        timeout: 3s
 
 volumes:
         redis:
