@@ -1,0 +1,5 @@
+Current keys in db:
+
+1. Set of all makes
+2. Set of all attributes (Hp, Engine, etc.)
+3. Sorted set for each attribute containing each vehicle with its value (Outback: 200, WRX: 279, etc.)

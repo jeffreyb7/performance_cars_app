@@ -2,7 +2,7 @@
 
 while :
 do
-	db_ready=$(printf "PING" | redis-cli -h redisdb)
+    db_ready=$(printf "PING" | redis-cli -h redisdb)
 	query_status=$?
 	if [[ $query_status -eq 0 ]]
 	then
