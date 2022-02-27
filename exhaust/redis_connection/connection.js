@@ -1,5 +1,5 @@
-var async = require('async')
-var redis = require('redis')
+var async = require('async');
+var redis = require('redis');
 
 
 /* Function to test database I/O */

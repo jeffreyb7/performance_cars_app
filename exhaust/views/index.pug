@@ -1,5 +1,10 @@
-extends layout
-
-block content
-  h1= title
-  p Let's find out!
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h2 Explore cars by
+    div(class='explore_choices')
+      button(class='button' type='button') Make
+      button(class='button' type='button') Attribute 

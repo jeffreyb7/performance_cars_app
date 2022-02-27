@@ -3,13 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	res.render('index', { title: 'Is It Fast?' });
-});
-
-router.get('/testdb', function(req, res) {
-	testTransactions().then(function(testValue) {
-		res.send(testValue);
-	});
+	res.render('index', { title: 'Find your performance car!' });
 });
 
 module.exports = router;

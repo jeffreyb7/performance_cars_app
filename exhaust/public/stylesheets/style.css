@@ -3,6 +3,24 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+h2 {
+  text-align: center;
+  text-decoration-line: underline;
+}
+
+.explore_choices {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+button {
+  background-color: white;
+  border: 2px #00008B solid; 
+  color: #00008B;
+  display: inline-block;
+  font-size: 24px;
+  margin: 20px;
+  text-align: center;
+  width: 25%;
 }

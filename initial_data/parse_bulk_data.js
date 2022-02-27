@@ -32,7 +32,7 @@ for (let x in categoryNames) {
 	}
 };
 
-// Create sorted set of cars for each attribute 
+// Create sorted set of car values for each attribute 
 for (let x in dataNoHeaders) {
     
 	let modelParams = dataNoHeaders[x].split(',');
@@ -54,6 +54,7 @@ for (let x in dataNoHeaders) {
 	};
 };
 
+// Create a set of unique makes available
 carMakes.forEach (function(value) {
     let makeOutput = `*3\r\n$4\r\nSADD\r\n$5\r\nMakes\r\n$${value.length}\r\n${value}\r\n`;
     fs.appendFileSync('./data_as_protocol.txt', makeOutput, (err) => {
