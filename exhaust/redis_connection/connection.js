@@ -22,6 +22,8 @@ async function makeConnection() {
 
 	await client.connect();
 
+    await client.sendCommand(['AUTH', 'sooby'])
+
 	return client;
 }
 

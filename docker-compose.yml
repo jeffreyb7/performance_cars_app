@@ -14,7 +14,8 @@ services:
             context: ./initial_data
 
     redisdb:
-        image: redis
+        build:
+            context: ./redis_db
         ports:
             - 6379:6379
         volumes:

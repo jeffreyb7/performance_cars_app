@@ -3,7 +3,7 @@
 while :
 do
     echo "Pinging redis"
-    db_ready=$(printf "PING" | redis-cli -h redisdb)
+    db_ready=$(printf "PING" | redis-cli -h redisdb -a 'sooby')
 	query_status=$?
     echo "Query status is $query_status"
     echo "DB response is $db_ready"
@@ -16,10 +16,10 @@ do
 	fi
 done
 
-is_data_loaded=$(printf "EXISTS Hp" | redis-cli -h redisdb)
+is_data_loaded=$(printf "EXISTS Hp" | redis-cli -h redisdb -a 'sooby')
 
 if [[ $is_data_loaded -eq 0 ]]
 then
-	cat /fast_data/data_as_protocol.txt | redis-cli -h redisdb --pipe
+	cat /fast_data/data_as_protocol.txt | redis-cli -h redisdb -a 'sooby' --pipe
 fi
 
