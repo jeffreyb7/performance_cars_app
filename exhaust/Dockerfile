@@ -5,4 +5,4 @@ WORKDIR /exhaust
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install --production
 COPY . .
-CMD [ "node", "./bin/www" ]
+CMD [ "npm", "start" ]
