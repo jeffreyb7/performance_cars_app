@@ -5,6 +5,7 @@ import { ref } from 'vue'
 
 const make = ref(false)
 const attribute = ref(false)
+const cars = ref({data:[{"model": "Subaru_outback", "hp": 200}, {"model": "Subaru_brz", "hp": 250}, {"model": "Subaru_sti", "hp": 325}]})
 
 </script>
 
@@ -21,10 +22,12 @@ const attribute = ref(false)
     <div v-if="attribute" class="sidebar" style="right:0;">
       <Sidebar />
     </div>
-    <div>
-      <BarChart />
-    </div>
   </header>
+  <body>
+    <div>
+        <BarChart :data="cars.data" />
+    </div>
+  </body>
 </template>
 
 <style>
