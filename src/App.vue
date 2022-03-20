@@ -5,7 +5,8 @@ import { ref } from 'vue'
 
 const make = ref(false)
 const attribute = ref(false)
-const cars = ref({data:[{"model": "Subaru_outback", "hp": 200}, {"model": "Subaru_brz", "hp": 250}, {"model": "Subaru_sti", "hp": 325}]})
+const cars = ref({model:["Subaru_outback", "Subaru_brz", "Subaru_sti", "Subaru_wrx"], attribute: [200, 250, 325, 300]})
+const screen_width = ref(window.innerWidth)
 
 </script>
 
@@ -24,8 +25,8 @@ const cars = ref({data:[{"model": "Subaru_outback", "hp": 200}, {"model": "Subar
     </div>
   </header>
   <body>
-    <div>
-        <BarChart :data="cars.data" />
+    <div class="chart">
+        <BarChart :data="cars" :screen_width="screen_width" />
     </div>
   </body>
 </template>
@@ -33,9 +34,7 @@ const cars = ref({data:[{"model": "Subaru_outback", "hp": 200}, {"model": "Subar
 <style>
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
 }
 
@@ -43,6 +42,8 @@ header {
   line-height: 1.5;
   max-height: 100vh;
   text-align: center;
+  margin: 0 auto;
+  width: 100%;
 }
 
 button {
@@ -66,6 +67,11 @@ button:hover {
   top: 0;
   overflow-x: hidden;
   padding-top: 20px;
+}
+
+.chart {
+  margin: 0 auto;
+  width: 80%;
 }
 
 </style>
