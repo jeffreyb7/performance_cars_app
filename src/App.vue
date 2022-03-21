@@ -6,7 +6,6 @@ import { ref } from 'vue'
 const make = ref(false)
 const attribute = ref(false)
 const cars = ref({model:["Subaru_outback", "Subaru_brz", "Subaru_sti", "Subaru_wrx"], attribute: [200, 250, 325, 300]})
-const screen_width = ref(window.innerWidth)
 
 </script>
 
@@ -26,7 +25,7 @@ const screen_width = ref(window.innerWidth)
   </header>
   <body>
     <div class="chart">
-        <BarChart :data="cars" :screen_width="screen_width" />
+        <BarChart :data="cars" />
     </div>
   </body>
 </template>
@@ -71,6 +70,7 @@ button:hover {
 
 .chart {
   margin: 0 auto;
+  overflow: scroll;
   width: 80%;
 }
 
