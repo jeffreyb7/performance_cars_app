@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from 'vue'
-const sidebarItems = ref(['Subaru', 'Nissan'])
+
+const props = defineProps(['attributes'])
+
 </script>
 
 <template>
-  <button v-for="item in sidebarItems">{{ item }}</button>
+  <button v-for="attr in props.attributes" @click="$emit('show-makes')">{{ attr }}</button>
 </template>
 
 <style scoped>

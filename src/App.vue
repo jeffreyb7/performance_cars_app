@@ -1,33 +1,33 @@
 <script setup>
-import Sidebar from './components/Sidebar.vue'
+import AttrSidebar from './components/AttrSidebar.vue'
+import MakeSidebar from './components/MakeSidebar.vue'
 import BarChart from './components/BarChart.vue'
 import { ref } from 'vue'
 
-const make = ref(false)
-const attribute = ref(false)
+const explore = ref(false)
+const showMakes = ref(false)
+const makes = ref(['BMW', 'Mercedes', 'Nissan', 'Subaru'])
 const cars = ref({model:["Subaru_outback", "Subaru_brz", "Subaru_sti", "Subaru_wrx"], attribute: [200, 250, 325, 300]})
+const attributes = ref(['Horsepower', 'Price', 'MPG Low', 'MPG High', 'Curb Weight', 'Manual'])
 
 </script>
 
 <template>
   <header>
     <h1>Is it fast?</h1>
-    <div class="choices">
-      <button class="button" type="button" @click="make = !make">Make</button>
-      <button class="button" type="button" @click="attribute = !attribute">Attribute</button>
+    <div v-if="!explore" class="choices">
+      <button class="button" type="button" @click="explore = !explore">Explore</button>
     </div>
-    <div v-if="make" class="sidebar" style="left:0;">
-      <Sidebar />
+    <div v-if="explore" class="sidebar" style="right:0;">
+      <AttrSidebar :attributes="attributes" @show-makes.once="showMakes=!showMakes"/>
     </div>
-    <div v-if="attribute" class="sidebar" style="right:0;">
-      <Sidebar />
+    <div v-if="showMakes" class="sidebar" style="left:0;">
+      <MakeSidebar :makes="makes" />
     </div>
   </header>
-  <body>
-    <div class="chart">
-        <BarChart :data="cars" />
-    </div>
-  </body>
+  <div class="chart">
+    <BarChart :data="cars" />
+  </div>
 </template>
 
 <style>
