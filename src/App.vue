@@ -3,12 +3,22 @@ import AttrSidebar from './components/AttrSidebar.vue'
 import MakeSidebar from './components/MakeSidebar.vue'
 import BarChart from './components/BarChart.vue'
 import { ref } from 'vue'
+import axios from 'axios'
+
 
 const explore = ref(false)
 const showMakes = ref(false)
 const makes = ref(['BMW', 'Mercedes', 'Nissan', 'Subaru'])
 const cars = ref({model:["Subaru_outback", "Subaru_brz", "Subaru_sti", "Subaru_wrx"], attribute: [200, 250, 325, 300]})
 const attributes = ref(['Horsepower', 'Price', 'MPG Low', 'MPG High', 'Curb Weight', 'Manual'])
+
+function testAPI() {
+  axios({method: 'get', url: 'http://localhost:8000/attributes'})
+    .then(function (response) {
+      console.log(response);
+    });
+};
+  
 
 </script>
 
@@ -17,6 +27,7 @@ const attributes = ref(['Horsepower', 'Price', 'MPG Low', 'MPG High', 'Curb Weig
     <h1>Is it fast?</h1>
     <div v-if="!explore" class="choices">
       <button class="button" type="button" @click="explore = !explore">Explore</button>
+      <button class="button" type="button" @click="testAPI()">Test</button>
     </div>
     <div v-if="explore" class="sidebar" style="right:0;">
       <AttrSidebar :attributes="attributes" @show-makes.once="showMakes=!showMakes"/>
