@@ -5,7 +5,7 @@ services:
         build:
             context: ./exhaust
         ports:
-            - 3000:3000
+            - 8000:8000
         volumes:
             - ./exhaust:/exhaust
             

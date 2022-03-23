@@ -13,7 +13,9 @@ async function getAttributes() {
 
 	await dbConnection.quit();
 
-	return allAttrs;
+    const attrPacket = {'data': {'Attributes': allAttrs}} 
+
+	return attrPacket;
 };
 
 async function getRanks(attribute) {
@@ -30,13 +32,14 @@ async function getRanks(attribute) {
 
     await dbConnection.quit();
 
-    const stdRanks = new Object(); 
+    const stdRanks = {'data': {'models': [], 'values': []}}; 
     
     while (rawRanks.length > 0) {
         let rankPair = rawRanks.splice(0, 2);
         let carModel = rankPair[0].replace(/_/g, ' ');
         let carValue = parseFloat(rankPair[1]);
-        stdRanks[carModel] = carValue;
+        stdRanks.data.models.push(carModel);
+        stdRanks.data.values.push(carValue);
     };
     
     return stdRanks;
