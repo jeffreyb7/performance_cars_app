@@ -1,0 +1,8 @@
+Make,Model,Price,Cylinders,Engine,Turbo,MPG_Low,MPG_High,Hp,Torque,RWD,AWD,FWD,Weight,Manual
+Subaru,Subaru_Outback_Base,26945,4,2.5,0,26,33,182,176,0,1,0,3637,0
+Subaru,Subaru_Outback_Onyx_XT,35145,4,2.4,1,23,26,260,277,0,1,0,3885,0
+Subaru,Subaru_Legacy_Base,22995,4,2.5,0,27,35,182,176,0,1,0,3500,0
+Subaru,Subaru_Legacy_XT,34495,4,2.4,1,24,32,260,277,0,1,0,3779,0
+Subaru,Subaru_BRZ_Premium,27995,4,2.4,0,21,30,228,184,1,0,0,2815,1
+Subaru,Subaru_WRX_Base,27495,4,2,1,20,27,268,258,0,1,0,3294,1
+Subaru,Subaru_WRX_STI,37245,4,2.5,1,16,22,310,290,0,1,0,3450,1

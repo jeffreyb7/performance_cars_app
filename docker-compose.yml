@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+    exhaust:
+        build:
+            context: ./exhaust
+        ports:
+            - 8000:8000
+        volumes:
+            - ./exhaust:/exhaust
+            
+    redis-loader:
+        build:
+            context: ./initial_data
+
+    redisdb:
+        build:
+            context: ./redis_db
+        ports:
+            - 6379:6379
+        volumes:
+            - redis:/data/db
+            - redis_config:/data/configdb
+
+volumes:
+    redis:
+    redis_config:
