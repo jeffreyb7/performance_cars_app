@@ -1,6 +1,6 @@
-# is_it_fast_frontend
+# is_it_fast
 
 ## *Work in progress*
 
-## Front end framework in VueJS for the is_it_fast project. 
-
+## Website that displays performance specs of new car models.
+## This uses Node.js Express, Redis, and Docker. 
