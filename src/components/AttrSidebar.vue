@@ -1,0 +1,28 @@
+<script setup>
+
+const props = defineProps(['attributes'])
+
+</script>
+
+<template>
+  <button v-for="attr in props.attributes" @click="$emit('show-makes')">{{ attr }}</button>
+</template>
+
+<style scoped>
+
+button {
+  background-color: white;
+  border: 2px #00008B solid;
+  color: #00008B;
+  display: block;
+  font-size: 12px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #DAA520
+}
+
+</style>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <head>
+    </head>
+    <body>
+        <svg id="d3_demo"></svg>
+        
+        <script>
+            let cars = {data: [{"model": "Outback", "hp": 200}, {"model": "WRX", "hp": 280}, {"model": "STI", "hp": 325}]};
+            const width = document.querySelector("body").clientWidth; 
+            const height = 500;
+            const margin = { top: 20, right: 30, bottom: 55, left: 70 };     
+            const x_scale = d3.scaleBand().range([margin.left, width - margin.right]).padding(0.1);
+            const y_scale = d3.scaleLinear().range([height - margin.bottom, margin.top]);
+
+            let x_axis = d3.axisBottom(x_scale);
+            let y_axis = d3.axisLeft(y_scale);
+
+            const svg = d3.select("#d3_demo")
+                .attr("viewbox", [0, 0, width, height])
+                .attr("width", width)
+                .attr("height", height);
+            
+            cars.data.forEach((d) => (d.hp = +d.hp));
+
+            x_scale.domain(cars.data.map((d) => d.model));
+            y_scale.domain([0, d3.max(cars.data, (d) => d.hp)]);    
+        
+            svg
+                .selectAll("rect")
+                .data(cars.data)
+                .join("rect")
+                .attr("class", "bar")
+                .attr("x", (d) => x_scale(d.model))
+                .attr("y", (d) => y_scale(d.hp))
+                .attr("width", x_scale.bandwidth())
+                .attr("height", (d) => height - margin.bottom - y_scale(d.hp));
+
+            svg
+                .append("g")
+                    .attr("transform", `translate(0,${height - margin.bottom})`)
+                    .call(x_axis)
+                    .selectAll("text");
+
+            svg
+                .append("g")
+                    .attr("transform", `translate(${margin.left},0)`)
+                    .call(y_axis);
+            
+        </script>
+
+    </body>
+</html>
+
