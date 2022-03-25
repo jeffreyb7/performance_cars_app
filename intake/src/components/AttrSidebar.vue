@@ -2,6 +2,8 @@
 
 const props = defineProps(['attributes'])
 
+const emit = defineEmits(['show-makes'])
+
 </script>
 
 <template>

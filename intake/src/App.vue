@@ -18,7 +18,6 @@ function testAPI() {
       console.log(response);
     });
 };
-  
 
 </script>
 
