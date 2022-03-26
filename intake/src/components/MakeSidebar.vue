@@ -5,7 +5,7 @@ const props = defineProps(['makes'])
 </script>
 
 <template>
-  <button v-for="make in props.makes">{{ make }}</button>
+  <button v-for="make in props.makes.data.Makes">{{ make }}</button>
 </template>
 
 <style scoped>

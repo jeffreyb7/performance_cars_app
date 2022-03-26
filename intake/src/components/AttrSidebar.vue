@@ -2,12 +2,11 @@
 
 const props = defineProps(['attributes'])
 
-const emit = defineEmits(['show-makes'])
-
+const emit = defineEmits(['getRanksMakes'])
 </script>
 
 <template>
-  <button v-for="attr in props.attributes" @click="$emit('show-makes')">{{ attr }}</button>
+  <button v-for="attr in props.attributes.data.Attributes" @click="$emit('getRanksMakes', attr)">{{ attr }}</button>
 </template>
 
 <style scoped>

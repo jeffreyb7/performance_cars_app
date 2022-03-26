@@ -5,38 +5,49 @@ import BarChart from './components/BarChart.vue'
 import { ref } from 'vue'
 import axios from 'axios'
 
+const ranks = ref({data: null})
+const attributes = ref({data: null})
+const selectedAttribute = ref({data: null})
+const makes = ref({data: null})
 
-const explore = ref(false)
-const showMakes = ref(false)
-const makes = ref(['BMW', 'Mercedes', 'Nissan', 'Subaru'])
-const cars = ref({model:["Subaru_outback", "Subaru_brz", "Subaru_sti", "Subaru_wrx"], attribute: [200, 250, 325, 300]})
-const attributes = ref(['Horsepower', 'Price', 'MPG Low', 'MPG High', 'Curb Weight', 'Manual'])
-
-function testAPI() {
+function getAttributes() {
   axios({method: 'get', url: 'http://localhost:8000/attributes'})
     .then(function (response) {
-      console.log(response);
-    });
-};
+      attributes.value = response.data
+    })
+}
+
+function getRanksMakes(attribute) {
+  selectedAttribute.value = {data: attribute}
+  axios({method: 'get', url: 'http://localhost:8000/Makes'})
+    .then(function (response) {
+      makes.value = response.data
+      console.log(makes.value)
+    })
+  axios({method: 'get', url: `http://localhost:8000/attributes/${attribute}`})
+    .then(function (response) {
+      ranks.value = response.data
+      console.log(ranks.value)
+    })
+}
 
 </script>
 
 <template>
   <header>
-    <h1>Is it fast?</h1>
-    <div v-if="!explore" class="choices">
-      <button class="button" type="button" @click="explore = !explore">Explore</button>
-      <button class="button" type="button" @click="testAPI()">Test</button>
+    <h1>Find Performance, Tailored</h1>
+    <div v-if="attributes.data == null" class="choices">
+      <button class="button" type="button" @click="getAttributes">Explore</button>
     </div>
-    <div v-if="explore" class="sidebar" style="right:0;">
-      <AttrSidebar :attributes="attributes" @show-makes.once="showMakes=!showMakes"/>
+    <div v-if="attributes.data != null" class="sidebar" style="right:0;">
+      <AttrSidebar :attributes="attributes" @getRanksMakes="getRanksMakes" />
     </div>
-    <div v-if="showMakes" class="sidebar" style="left:0;">
+    <div v-if="makes.data != null" class="sidebar" style="left:0;">
       <MakeSidebar :makes="makes" />
     </div>
   </header>
-  <div class="chart">
-    <BarChart :data="cars" />
+  <div v-if="ranks.data != null" class="chart">
+    <BarChart :data="ranks.data" :selection="selectedAttribute.data"/>
   </div>
 </template>
 

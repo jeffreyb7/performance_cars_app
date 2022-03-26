@@ -1,13 +1,6 @@
 version: '3.8'
 
 services:
-    intake:
-        build:
-            context: ./intake
-        ports:
-            - 3000:3000
-        volumes:
-            - ./intake:/intake
     exhaust:
         build:
             context: ./exhaust

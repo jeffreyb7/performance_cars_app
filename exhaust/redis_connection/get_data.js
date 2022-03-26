@@ -18,6 +18,21 @@ async function getAttributes() {
 	return attrPacket;
 };
 
+/* Function to retrieve makes */
+async function getMakes() {
+	const dbConnection = await makeConnection();
+	
+	const allMakes = await dbConnection.SMEMBERS('Makes', (err, reply) => {
+		if (err) throw err;
+	});
+
+	await dbConnection.quit();
+
+    const makePacket = {'data': {'Makes': allMakes}} 
+
+	return makePacket;
+};
+
 async function getRanks(attribute) {
     const dbConnection = await makeConnection();
     
@@ -47,5 +62,6 @@ async function getRanks(attribute) {
 
 module.exports = {
     getAttributes,
+    getMakes,
     getRanks
 };

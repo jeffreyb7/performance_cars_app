@@ -2,7 +2,7 @@
   "name": "is_it_fast",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5050"
   },
