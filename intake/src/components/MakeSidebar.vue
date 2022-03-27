@@ -2,10 +2,12 @@
 
 const props = defineProps(['makes'])
 
+const emit = defineEmits(['filterMakes'])
+
 </script>
 
 <template>
-  <button v-for="make in props.makes.data.Makes">{{ make }}</button>
+  <button v-for="make in props.makes.data.Makes" @click="$emit('filterMakes', make)">{{ make }}</button>
 </template>
 
 <style scoped>
