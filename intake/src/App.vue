@@ -34,21 +34,20 @@ function getRanks(attribute) {
 function filterMakes(make) {
   if (!selectedMakes.value) {
     selectedMakes.value = []
-    selectedMakes.value.push(make)
-    console.log(selectedMakes.value)
+    let newFilter = []
+    newFilter.push(make)
+    selectedMakes.value = newFilter
   } 
   else {
     if (selectedMakes.value.includes(make)) {
       selectedMakes.value = selectedMakes.value.filter(entry => entry != make)
       if (selectedMakes.value.length == 0) {selectedMakes.value = null}
-      console.log(selectedMakes.value)
     }
     else { 
       let newFilter = []
       newFilter.push(selectedMakes.value[0])
       newFilter.push(make)
       selectedMakes.value = newFilter
-      console.log(selectedMakes.value)
     }
   }
 } 
@@ -69,29 +68,27 @@ watch(selectedMakes, (newMakeFilter) => {
     let sortedRanks = sortRanks(ranksZipped)
     ranks.value = sortedRanks
   }
-  // Whenever filter is changed, combine all possibilities, then select filtered
+  // Whenever filter is changed, place all entries in inactive dict, then select filtered into active
   else {
-    if (!inactiveRanks.value) {inactiveRanks.value = {}}
-    let allData = {}
-    for (let entry in inactiveRanks.value) {
-      allData[entry] = inactiveRanks.value[entry]
+    if (!inactiveRanks.value) { 
+      inactiveRanks.value = {}
     }
     for (let entry in ranksZipped) {
-      allData[entry] = ranksZipped[entry]
+      inactiveRanks.value[entry] = ranksZipped[entry]
     }
+    ranksZipped = {}
     // Need to change logic here. When more than one filter, you are taking out models that apply to the second filter
     for (let x = 0; x < newMakeFilter.length; x++) {
       let testPattern = new RegExp(newMakeFilter[x])
-      for (let entry in allData) {
+      for (let entry in inactiveRanks.value) {
         let testResult = testPattern.test(entry)
-        console.log(testPattern, entry, testResult)
-        if (!testResult) {
-          inactiveRanks.value[entry] = allData[entry]
-          delete allData[entry]
+        if (testResult) {
+          ranksZipped[entry] = inactiveRanks.value[entry]
+          delete inactiveRanks.value[entry]
         }
       }
     }
-    let sortedFilter = sortRanks(allData)
+    let sortedFilter = sortRanks(ranksZipped)
     ranks.value = sortedFilter
   }
 })
