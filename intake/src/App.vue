@@ -12,6 +12,7 @@ const selectedAttribute = ref(null)
 const selectedMakes = ref(null)
 const makes = ref(null)
 
+
 function getAttributesMakes() {
   axios({method: 'get', url: 'http://localhost:8000/attributes'})
     .then(function (response) {
