@@ -40,29 +40,29 @@ for (let x in dataNoHeaders) {
 
 	for (let i = 2; i < categoryNames.length; i++) {
 
-        let modelName = modelParams[1];
-        let category = categoryNames[i];
-        let modelValue = modelParams[i];
+    let modelName = modelParams[1];
+    let category = categoryNames[i];
+    let modelValue = modelParams[i];
 
-        let dataOutput = `*4\r\n$4\r\nZADD\r\n$${category.length}\r\n${category}\r\n$${modelValue.length}\r\n${modelValue}\r\n$${modelName.length}\r\n${modelName}\r\n`;
-        fs.appendFileSync('./data_as_protocol.txt', dataOutput, (err) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-        });
+    let dataOutput = `*4\r\n$4\r\nZADD\r\n$${category.length}\r\n${category}\r\n$${modelValue.length}\r\n${modelValue}\r\n$${modelName.length}\r\n${modelName}\r\n`;
+    fs.appendFileSync('./data_as_protocol.txt', dataOutput, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+    });
 	};
 };
 
 // Create a set of unique makes available
 carMakes.forEach (function(value) {
-    let makeOutput = `*3\r\n$4\r\nSADD\r\n$5\r\nMakes\r\n$${value.length}\r\n${value}\r\n`;
-    fs.appendFileSync('./data_as_protocol.txt', makeOutput, (err) => {
-        if (err) {
-            console.error(err);
-            return;
-        };
-    });
+  let makeOutput = `*3\r\n$4\r\nSADD\r\n$5\r\nMakes\r\n$${value.length}\r\n${value}\r\n`;
+  fs.appendFileSync('./data_as_protocol.txt', makeOutput, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    };
+  });
 });
 
 

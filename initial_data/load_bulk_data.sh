@@ -2,16 +2,16 @@
 
 while :
 do
-    echo "Pinging redis"
-    db_ready=$(printf "PING" | redis-cli -h redisdb -a 'sooby')
+  echo "Pinging redis"
+  db_ready=$(printf "PING" | redis-cli -h redisdb -a 'sooby')
 	query_status=$?
-    echo "Query status is $query_status"
-    echo "DB response is $db_ready"
+  echo "Query status is $query_status"
+  echo "DB response is $db_ready"
 	if [[ $query_status -eq 0 ]] && [[ "$db_ready" = "PONG" ]] 
-	then 
+	  then 
 		break
 	else
-        echo "Sleeping 5"
+    echo "Sleeping 5"
 		sleep 5
 	fi
 done

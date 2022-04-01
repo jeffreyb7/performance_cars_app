@@ -3,26 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require('cors');
 
-var indexRouter = require('./routes/index');
 var attributeRouter = require('./routes/attributes');
 var makeRouter = require('./routes/makes');
 
 var app = express();
 
-// view engine setup
-app.set('views', './views');
-app.set('view engine', 'pug');
-
-app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/attributes', attributeRouter);
 app.use('/makes', makeRouter);
 

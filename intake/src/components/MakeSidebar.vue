@@ -1,13 +1,12 @@
 <script setup>
 
-const props = defineProps(['makes'])
-
+const props = defineProps(['makes', 'selectedMakes'])
 const emit = defineEmits(['filterMakes'])
 
 </script>
 
 <template>
-  <button v-for="make in props.makes.data.Makes" @click="$emit('filterMakes', make)">{{ make }}</button>
+  <button v-for="make in props.makes.data.Makes" :class="[props.selectedMakes.some((element) => element == make) ? 'makeSelected' : '']" @click="$emit('filterMakes', make)">{{ make }}</button>
 </template>
 
 <style scoped>
@@ -24,7 +23,15 @@ button {
 }
 
 button:hover {
-  background-color: #DAA520
+  background-color: #DAA520;
+}
+
+button.makeSelected {
+  background-color: #DAA520;
+}
+
+button:hover.makeSelected {
+  background-color: white;
 }
 
 </style>

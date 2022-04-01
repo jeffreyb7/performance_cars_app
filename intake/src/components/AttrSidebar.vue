@@ -1,12 +1,11 @@
 <script setup>
 
-const props = defineProps(['attributes'])
-
+const props = defineProps(['attributes', 'selectedAttribute'])
 const emit = defineEmits(['getRanks'])
 </script>
 
 <template>
-  <button v-for="attr in props.attributes.data.Attributes" @click="$emit('getRanks', attr)">{{ attr }}</button>
+  <button v-for="attr in props.attributes.data.Attributes" :class="[attr == props.selectedAttribute ? 'attrSelected' : '']" @click="$emit('getRanks', attr)">{{ attr }}</button>
 </template>
 
 <style scoped>
@@ -23,7 +22,16 @@ button {
 }
 
 button:hover {
-  background-color: #DAA520
+  background-color: #DAA520;
 }
+
+button.attrSelected {
+  background-color: #DAA520;
+} 
+
+button:hover.attrSelected {
+  background-color: white;
+}
+
 
 </style>
