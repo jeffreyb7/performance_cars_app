@@ -107,6 +107,9 @@ function filterMakes(make) {
     <div v-if="!rawAttributes" class="choices">
       <button class="button" type="button" @click="getAttributesMakes">Explore</button>
     </div>
+    <div v-if="!selectedScores" class="stockImage">
+      <img src="/landing.jpg"> 
+    </div>
     <div v-if="rawAttributes" class="sidebar" style="right:0;">
       <AttrSidebar :attributes="rawAttributes" :selectedAttribute="selectedAttribute" @getRanks="getRanks" />
     </div>
@@ -145,16 +148,27 @@ button {
 }
 
 button:hover {
-  background-color: #DAA520
+  background-color: #DAA520;
 }
 
 .sidebar {
+  background-color: #A9A9A9;
   width: 10%;
+  height: 100%;
   position: fixed;
   z-index: 1;
   top: 0;
   overflow-x: hidden;
   padding-top: 20px;
+}
+
+.stockImage {
+  margin: 0 auto;
+  width: 100%;
+}
+
+img {
+  width: 100%;
 }
 
 .chart {
